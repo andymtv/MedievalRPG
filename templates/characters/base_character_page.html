@@ -1,0 +1,20 @@
+{% extends 'base_user_page.html' %}
+
+{% block title %}
+    <title>Medieval | {{username}}</title>
+{% endblock %}
+
+{% block body %}
+    <div class="character_container">
+        <div class="character_info">
+            <h3 class="character_name">{{character_name}}</h3>
+            <div class="character_level_wrapper">
+                <h2 class="character_level">Level: {{character_level}}</h2>
+            </div>
+            <h3 class="character_class">Class: {{character_class}}</h3>
+        </div>
+        <div class="character_portrait_wrapper">
+            <img src="{{url_for('static',filename=path_to_portrait+'.jpg')}}" alt="" class="char_portrait char_portrait_main">
+        </div>
+    </div>
+{% endblock %}

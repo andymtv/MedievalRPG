@@ -1,0 +1,66 @@
+<div class="container_registration">
+    <form action="/signup" method="POST" id='form_reg'>
+        <div class="container_registration_form">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="" required>
+            {% with messages = get_flashed_messages(category_filter=['login_error']) %}
+                {% if messages %}
+                    <p class="error_message">{{ messages[0] }}</p>
+                {% endif %}
+            {% endwith %}
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+            {% with messages = get_flashed_messages(category_filter=['email_error']) %}
+                {% if messages %}
+                    <p class="error_message">{{ messages[0] }}</p>
+                {% endif %}
+            {% endwith %}
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            <label for="password">Repeat password</label>
+            <input type="password" name="repeated_password" id="repeated_password" required>
+
+            <input type="submit" form='form_reg' value="Create account" name="new_user_submit" class="btn btn-light btn_main" disabled='true'>
+
+            <!-- Delete error message when user clicks on the input field -->
+            <script>
+                try {
+                    err_msg = document.querySelector('.error_message')
+                    username_input = document.querySelector('#username')
+                    email_input = document.querySelector('#email')
+
+                    username_input.addEventListener('click', () => {
+                        err_msg.style.display = 'none'
+                    })
+                    email_input.addEventListener('click', () => {
+                        err_msg.style.display = 'none'
+                    })
+                } catch {
+                    console.log('Element doesn\'t exist');
+                }
+            </script>
+
+
+            <!-- Check if passwords match -->
+            <script>
+                password = document.querySelector('#password')
+                repeated_password = document.querySelector('#repeated_password')
+                btn_submit = document.querySelector('input[name="new_user_submit"]');
+                repeated_password.addEventListener('input', () => {
+                    if (repeated_password.value == password.value){
+                        btn_submit.disabled = false
+                    } else {
+                        btn_submit.disabled = true
+                    }
+                })
+                password.addEventListener('input', () => {
+                    if (repeated_password.value == password.value){
+                        btn_submit.disabled = false
+                    } else {
+                        btn_submit.disabled = true
+                    }
+                })
+            </script>
+        </div>
+    </form>
+</div>

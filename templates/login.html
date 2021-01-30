@@ -1,0 +1,36 @@
+<div class="container_login">
+    <form action="/login" method="POST" id='form_login'>
+        <div class="container_login_form">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            {% with messages = get_flashed_messages(category_filter=['data_error']) %}
+                {% if messages %}
+                    <p class="error_message">{{ messages[0] }}</p>
+                {% endif %}
+            {% endwith %}
+            {% with messages = get_flashed_messages(category_filter=['not_logged']) %}
+            {% if messages %}
+                <pre class="error_message">{{ messages[0] }}</pre>
+            {% endif %}
+        {% endwith %}
+
+            <input type="submit" form='form_login' value="Log In" name="login_submit" class="btn btn-light btn_main" disabled='true'>
+
+            <!-- Check if passwords is not empty-->
+            <script>
+                password = document.querySelector('#password')
+                btn_submit = document.querySelector('input[name="login_submit"]');
+                password.addEventListener('input', () => {
+                    if (password.value != ''){
+                        btn_submit.disabled = false
+                    } else {
+                        btn_submit.disabled = true
+                    }
+                })
+            </script>
+
+        </div>
+    </form>
+</div>

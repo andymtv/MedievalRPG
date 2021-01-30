@@ -1,0 +1,17 @@
+<div class="start_question">
+    <h1>Greetings, Stranger. Let me ask you a question.</h1>
+    <h1>This is your first time in this game?</h1>
+    <div class="btns_answer">
+        <button class="btn btn-light btn_main btn_yes">Yes</button>
+        <button class="btn btn-light btn_main btn_no">No</button>
+
+        <script>
+            document.querySelector('.btn_yes').addEventListener('click', () => {
+                window.location.href = '/signup_page'
+            })
+            document.querySelector('.btn_no').addEventListener('click', () => {
+                window.location.href = '/login_page'
+            })
+        </script>
+    </div>
+</div>

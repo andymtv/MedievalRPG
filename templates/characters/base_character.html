@@ -1,0 +1,68 @@
+{% extends 'base_user_page.html' %}
+
+{% block title %}
+    <title>{{chosen_class}}</title>
+{% endblock %}
+{% block body %}
+    <div class="create_char_container">
+        <form action="/my/{{username}}/{{chosen_class}}" method="POST" id='char_name_form'>
+            <div class="char_name_header">
+                <label for="char_name">Character name</label>
+                <input type="text" name="char_name" id="char_name">
+                <input type="text" name="char_portrait" id="char_portrait_input" style="display: none;">
+            </div>
+
+            <div class="choose_char_container">
+                <h1 class="choose_char_title">Choose portrait</h1>
+                <div class="choose_portrait_container">
+        
+                    <div class="char_portraits_wrapper class_{{chosen_class}}">
+                        <h4 class="char_portraits_title">{{chosen_class}} 1</h4>
+                        <img src="{{url_for('static', filename='/img/' + chosen_class + '/' + chosen_class + '1.jpg')}}" alt="" name="{{chosen_class}}1" class="char_portrait" id="char_portrait">
+                    </div>
+        
+                    <div class="char_portraits_wrapper class_{{chosen_class}}">
+                        <h4 class="char_portraits_title">{{chosen_class}} 2</h4>
+                        <img src="{{url_for('static', filename='/img/' + chosen_class + '/' + chosen_class + '2.jpg')}}" alt="" name="{{chosen_class}}2" class="char_portrait" id="char_portrait">
+                    </div>
+        
+                    <div class="char_portraits_wrapper class_{{chosen_class}}">
+                        <h4 class="char_portraits_title">{{chosen_class}} 3</h4>
+                        <img src="{{url_for('static', filename='/img/' + chosen_class + '/' + chosen_class + '3.jpg')}}" alt="" name="{{chosen_class}}3" class="char_portrait" id="char_portrait">
+                    </div>
+                    
+                    <div class="char_portraits_wrapper class_{{chosen_class}}">
+                        <h4 class="char_portraits_title">{{chosen_class}} 4</h4>
+                        <img src="{{url_for('static', filename='/img/' + chosen_class + '/' + chosen_class + '4.jpg')}}" alt="" name="{{chosen_class}}4" class="char_portrait" id="char_portrait">
+                    </div>
+    
+                    <div class="char_portraits_wrapper class_{{chosen_class}}">
+                        <h4 class="char_portraits_title">{{chosen_class}} 5</h4>
+                        <img src="{{url_for('static', filename='/img/' + chosen_class + '/' + chosen_class + '5.jpg')}}" alt="" name="{{chosen_class}}5" class="char_portrait" id="char_portrait">
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Get selected character portrait by catching click on image and return a string with image name-->
+    <script>
+        char_form = document.getElementById('char_name_form')
+        char_name = document.getElementById('char_name')
+        char_portrait_input = document.getElementById('char_portrait_input')
+        characters = document.querySelectorAll('.char_portrait');
+        characters.forEach(e => {
+            e.addEventListener('click', () => {
+                if (char_name.value != ' ' && char_name.value != '') {
+                    char_portrait_input.value = e.getAttribute('name')
+                    console.log(char_portrait_input.value);
+                    char_form.submit()
+                } else {
+                    console.log('Enter character name!');
+                }
+            });
+        });
+    </script>
+{% endblock %}

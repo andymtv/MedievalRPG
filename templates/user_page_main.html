@@ -1,0 +1,85 @@
+
+{% extends 'characters/base_character_page.html' %}
+
+{% block title %}
+    <title>Medieval | {{username}}</title>
+{% endblock %}
+
+{% block body %}
+    <div class="character_container">
+        <div class="character_info">
+            <h2 class="character_name">{{character_name}}</h2>
+            <h3 class="character_class">Class: {{character_class}}</h3>
+            <div class="character_level_wrapper">
+                <h3 class="character_level">Level: {{character_level}}</h3>
+            </div>
+        </div>
+        <div class="character_attributes">
+            <h3 class="attributes_title">Attributes</h3>
+            <div class="attributes_container">
+                <div class="attr_cont">
+                    <img src="{{url_for('static', filename='img/icons/attributes/strength.png')}}" alt="Strength: {{character_strength}}" class="attr_icon icon">
+                    <span class="strength">Strength: {{character_strength}}</span>
+                </div>
+                <div class="attr_cont">
+                    <img src="{{url_for('static', filename='img/icons/attributes/intelligence.png')}}" alt="Intelligency: {{character_intelligence}}" class="attr_icon icon">
+                    <span class="intelligency">Intelligency: {{character_intelligence}}</span>
+                </div>
+                <div class="attr_cont">
+                    <img src="{{url_for('static', filename='img/icons/attributes/dexterity.png')}}" alt="Dexterity: {{character_dexterity}}" class="attr_icon icon">
+                    <span class="dexterity">Dexterity: {{character_dexterity}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="character_skills">
+            <h3 class="skills_title">Skills</h3>
+            <div class="skills_container">
+                <div class="skill_cont" id='skill0'>
+                    <img src="{{url_for('static', filename=skill0_icon)}}" alt="{{skill0}}" class="skill_icon icon">
+                    <span class="skill1">{{skill0}}</span>
+                </div>
+                <div class="skill_cont" id='skill1'>
+                    <img src="{{url_for('static', filename=skill1_icon)}}" alt="{{skill1}}" class="skill_icon icon">
+                    <span class="skill2">{{skill1}}</span>
+                </div>
+                <div class="skill_cont" id='skill2'>
+                    <img src="{{url_for('static', filename=skill2_icon)}}" alt="{{skill2}}" class="skill_icon icon">
+                    <span class="skill3">{{skill2}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="character_stats">
+            <div class="stats_container">
+                <div class="stat_cont">
+                    <img src="{{url_for('static', filename='img/icons/attributes/heart.png')}}" alt="" class="attr_icon icon">
+                    <span class="hp">HP</span>
+                    <div class="hp_bar">{{character_hp}}</div>
+                </div>
+                <div class="stat_cont">
+                    <img src="{{url_for('static', filename='img/icons/attributes/mana.png')}}" alt="" class="attr_icon icon">
+                    <span class="mp">MP</span>
+                    <div class="mp_bar">{{character_mp}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="character_portrait_wrapper">
+            <img src="{{url_for('static',filename=path_to_portrait+'.jpg')}}" alt="" class="char_portrait char_portrait_main">
+        </div>
+    </div>
+    <div class="skill_description"></div>
+    <script>
+        skills = document.querySelectorAll('.skill_cont');
+        skill_description = document.querySelector('.skill_description')
+        skills_obj = {'skill0': '{{skill0_description}}', 'skill1': '{{skill1_description}}', 'skill2': '{{skill2_description}}'};
+        skills.forEach(skill => {
+            skill.addEventListener('mouseover', () => {
+                skill_description.style.display = 'flex'
+
+                skill_description.textContent = skills_obj[skill.id]
+            });
+            skill.addEventListener('mouseout', () => {
+                skill_description.style.display = 'none'
+            });
+        });
+    </script>
+{% endblock %}

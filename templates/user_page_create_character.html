@@ -1,0 +1,49 @@
+{% extends 'base_user_page.html' %}
+
+{% block title %}
+    <title>Medieval | {{username}}</title>
+{% endblock %}
+
+{% block body %}
+    <div class="choose_char_container">
+        <h1 class="choose_char_title">Choose character class</h1>
+        <div class="choose_char">
+
+            <div class="char_portraits_wrapper mage">
+                <h4 class="char_portraits_title">Mage</h4>
+                <img src="{{url_for('static', filename='/img/mage/mage5.jpg')}}" alt="" class="char_portrait">
+            </div>
+
+            <div class="char_portraits_wrapper warrior">
+                <h4 class="char_portraits_title">Warrior</h4>
+                <img src="{{url_for('static', filename='/img/warrior/warrior5.jpg')}}" alt="" class="char_portrait">
+            </div>
+
+            <div class="char_portraits_wrapper thief">
+                <h4 class="char_portraits_title">Thief</h4>
+                <img src="{{url_for('static', filename='/img/thief/thief5.jpg')}}" alt="" class="char_portrait">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Get selected character class by catching click on image -->
+    <script>
+        characters = document.querySelectorAll('.char_portraits_wrapper')
+        characters.forEach(e => {
+            e.addEventListener('click', () => {
+                if (e.classList.contains('mage')) {
+                    window.location.href = '/my/{{username}}/mage'
+                } else if (e.classList.contains('warrior')) {
+                    window.location.href = '/my/{{username}}/warrior'
+                } else if (e.classList.contains('thief')) {
+                    window.location.href = '/my/{{username}}/thief'
+                } else {
+                    console.log('Error');
+                }
+
+            })
+        });
+    </script>
+{% endblock %}
+

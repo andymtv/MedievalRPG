@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Medieval</title>
+{% endblock %}
+
+{% block body %}
+    {% if is_newgame == True %}
+        {% if no_users == True %}
+            <h1>create a user first</h1>
+        {% else %}
+            {% include 'question.html' %}
+        {% endif %}
+    {% elif is_newgame == False %}
+        {% if answer == True %}
+            {% include 'signup.html' %}
+        {% else %}
+            {% include 'login.html' %}
+        {% endif %}
+    {% else %}
+        <h1>Something went wrong...</h1>
+    {% endif %}
+{% endblock %}
